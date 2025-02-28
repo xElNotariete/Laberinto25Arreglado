@@ -19,20 +19,20 @@ class Bomba(Decorator):
         return True
 
 class Bicho:
-    def __init__(self, vidas, poder, posicion, modo):
-        self.vidas = vidas
+    def __init__(self, vida, poder, posicion, modo):
+        self.vida = vida
         self.poder = poder
         self.posicion = posicion
         self.modo = modo
 
     def iniAgresivo(self):
         self.modo = Agresivo()
-        self.poder = 10
-        self.vidas = 5
+        self.poder = 15
+        self.vidas = 6
 
     def iniPasivo(self):
         self.poder = 1
-        self.vidas = 5
+        self.vidas = 1
 
 class Modo:
     def __init__(self):
@@ -52,7 +52,7 @@ class Habitacion(ElementoMapa):
         self.num = num
 
     def entrar(self):
-        print(f"Entrando en la habitación {self.num}")
+        print(f"Entro a la Habitación  {self.num}")
 
 class Laberinto(ElementoMapa):
     def __init__(self):
@@ -60,7 +60,7 @@ class Laberinto(ElementoMapa):
         self.habitaciones = []
 
     def entrar(self):
-        print("Entrando en el laberinto")
+        print("Bienvenido al Laberinto de la muerte: Mucha Suerte")
 
     def agregar_habitacion(self, habitacion):
         self.habitaciones.append(habitacion)
@@ -76,7 +76,7 @@ class Pared(ElementoMapa):
         super().__init__()
 
     def entrar(self):
-        print("Entrando en una pared")
+        print("Chocaste contra una pared")
 
 class ParedBomba(Pared):
     def __init__(self):
@@ -84,7 +84,7 @@ class ParedBomba(Pared):
         self.activa = False
 
     def entrar(self):
-        print("Entrando en una pared bomba")
+        print("Vaya una pared con una bomba...")
 
 class Puerta:
     def __init__(self, lado1, lado2):
@@ -93,7 +93,7 @@ class Puerta:
         self.lado2 = lado2
 
     def entrar(self):
-        print("Entrando en una puerta")
+        print("Entrando Por la puerta")
 
     def abrir(self):
         self.abierta = True
@@ -170,13 +170,13 @@ class Juego:
         habitacion4.norte = puerta34
         habitacion4.oeste = puerta24
 
-        bicho1 = creator.crear_bicho(5, 10, habitacion1, creator.crear_modo_agresivo())
+        bicho1 = creator.crear_bicho(6, 15, habitacion1, creator.crear_modo_agresivo())
         self.agregar_bicho(bicho1)
-        bicho3 = creator.crear_bicho(5, 10, habitacion3, creator.crear_modo_agresivo())
+        bicho3 = creator.crear_bicho(6, 15, habitacion3, creator.crear_modo_agresivo())
         self.agregar_bicho(bicho3)
-        bicho2 = creator.crear_bicho(5, 1, habitacion2, creator.crear_modo_perezoso())
+        bicho2 = creator.crear_bicho(1, 1, habitacion2, creator.crear_modo_pasivo())
         self.agregar_bicho(bicho2)
-        bicho4 = creator.crear_bicho(5, 1, habitacion4, creator.crear_modo_perezoso())
+        bicho4 = creator.crear_bicho(1, 1, habitacion4, creator.crear_modo_pasivo())
         self.agregar_bicho(bicho4)
 
         habitacion1.bicho = bicho1
