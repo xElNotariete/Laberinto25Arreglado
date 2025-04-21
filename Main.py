@@ -1,5 +1,9 @@
 from creator import Creator, CreatorB
-from Juego import Juego
+from juego import Juego
+from este import Este
+from oeste import Oeste
+import time
+
 #ejemplo de uso
 fm = Creator()
 juego = Juego()
@@ -11,170 +15,41 @@ print(hab2.num)
 
 #laberinto con paredes bomba
 fmb = CreatorB()
-juego.laberinto = juego.crearLaberinto2HabFM(fmb)
+juego.laberinto = juego.crearLaberinto2HabBomba(fmb)
 hab1=juego.obtenerHabitacion(1)
 hab2=juego.obtenerHabitacion(2)
-print(hab1.norte.activa)
-print(hab2.sur.activa)
-
-fm = Creator()
-juego.laberinto = juego.crearLaberinto4Hab(fm)
-
-
-for habitacion in juego.laberinto.habitaciones:
-    print(f"Habitación {habitacion.num}")
-    if hasattr(habitacion, 'bicho'):
-        bicho = habitacion.bicho
-        bicho = habitacion.bicho
-from creator import Creator, CreatorB
-from juego import Juego, Bomba
-
-
-fm = Creator()
-juego = Juego()
-juego.laberinto = juego.crearLaberinto2HabFM(fm)
-hab1=juego.obtenerHabitacion(1)
-hab2=juego.obtenerHabitacion(2)
-print(hab1.num)
-print(hab2.num)
-
-
-fmb = CreatorB()
-juego.laberinto = juego.crearLaberinto2HabFM(fmb)
-hab1=juego.obtenerHabitacion(1)
-hab2=juego.obtenerHabitacion(2)
-print(hab1.norte.activa)
-print(hab2.sur.activa)
-
-
-fm = Creator()
-juego.laberinto = juego.crearLaberinto4Hab(fm)
-
-
-for habitacion in juego.laberinto.habitaciones:
-    print(f"Habitación {habitacion.num}")
-    if hasattr(habitacion, 'bicho'):
-        bicho = habitacion.bicho
-from creator import Creator, CreatorB
-from juego import Juego, Bomba
-#ejemplo de uso
-fm = Creator()
-juego = Juego()
-juego.laberinto = juego.crearLaberinto2HabFM(fm)
-hab1=juego.obtenerHabitacion(1)
-hab2=juego.obtenerHabitacion(2)
-print(hab1.num)
-print(hab2.num)
-
-
-fmb = CreatorB()
-juego.laberinto = juego.crearLaberinto2HabFM(fmb)
-hab1=juego.obtenerHabitacion(1)
-hab2=juego.obtenerHabitacion(2)
-print(hab1.norte.activa)
-print(hab2.sur.activa)
-
-
-fm = Creator()
-juego.laberinto = juego.crearLaberinto4Hab(fm)
-
-for habitacion in juego.laberinto.habitaciones:
-    print(f"Habitación {habitacion.num}")
-    if hasattr(habitacion, 'bicho'):
-        bicho = habitacion.bicho
-from creator import Creator, CreatorB
-from juego import Juego, Bomba
-
-fm = Creator()
-juego = Juego()
-juego.laberinto = juego.crearLaberinto2HabFM(fm)
-hab1=juego.obtenerHabitacion(1)
-hab2=juego.obtenerHabitacion(2)
-print(hab1.num)
-print(hab2.num)
-
-
-fmb = CreatorB()
-juego.laberinto = juego.crearLaberinto2HabFM(fmb)
-hab1=juego.obtenerHabitacion(1)
-hab2=juego.obtenerHabitacion(2)
-print(hab1.norte.activa)
-print(hab2.sur.activa)
-
-
-fm = Creator()
-juego.laberinto = juego.crearLaberinto4Hab(fm)
-
-# Mostrar el número de cada habitación
-for habitacion in juego.laberinto.habitaciones:
-    print(f"Habitación {habitacion.num}")
-    if hasattr(habitacion, 'bicho'):
-        bicho = habitacion.bicho
-from creator import Creator, CreatorB
-from juego import Juego, Bomba
-#ejemplo de uso
-fm = Creator()
-juego = Juego()
-juego.laberinto = juego.crearLaberinto2HabFM(fm)
-hab1=juego.obtenerHabitacion(1)
-hab2=juego.obtenerHabitacion(2)
-print(hab1.num)
-print(hab2.num)
-
-#laberinto con paredes bomba
-fmb = CreatorB()
-juego.laberinto = juego.crearLaberinto2HabFM(fmb)
-hab1=juego.obtenerHabitacion(1)
-hab2=juego.obtenerHabitacion(2)
-print(hab1.norte.activa)
-print(hab2.sur.activa)
+bm1=hab1.obtenerElementoEnOrientacion(Este())
+bm2=hab2.obtenerElementoEnOrientacion(Oeste())
+print(bm1.activa)
+print(bm2.activa)
 
 # Crear laberinto de 4 habitaciones
 fm = Creator()
 juego.laberinto = juego.crearLaberinto4Hab(fm)
 
 # Mostrar el número de cada habitación
-for habitacion in juego.laberinto.habitaciones:
+for habitacion in juego.laberinto.hijos:
     print(f"Habitación {habitacion.num}")
-    if hasattr(habitacion, 'bicho'):
-        bicho = habitacion.bicho
-from creator import Creator, CreatorB
-from juego import Juego, Bomba
-#ejemplo de uso
-fm = Creator()
-juego = Juego()
-juego.laberinto = juego.crearLaberinto2HabFM(fm)
-hab1=juego.obtenerHabitacion(1)
-hab2=juego.obtenerHabitacion(2)
-print(hab1.num)
-print(hab2.num)
 
-#laberinto con paredes bomba
-fmb = CreatorB()
-juego.laberinto = juego.crearLaberinto2HabFM(fmb)
-hab1=juego.obtenerHabitacion(1)
-hab2=juego.obtenerHabitacion(2)
-print(hab1.norte.activa)
-print(hab2.sur.activa)
+#mostrar los bichos del juego
+for bicho in juego.bichos:
+    print(bicho)
+    print(f"Bicho con {bicho.vidas} vidas y {bicho.poder} de poder")
+    print(f"Posición {bicho.posicion.num}")
 
-# Crear laberinto de 4 habitaciones
-fm = Creator()
-juego.laberinto = juego.crearLaberinto4Hab(fm)
 
-# Mostrar el número de cada habitación
-for habitacion in juego.laberinto.habitaciones:
-    print(f"Habitación {habitacion.num}")
-    if hasattr(habitacion, 'bicho'):
-        bicho = habitacion.bicho
-        print(f"  Bicho: Vidas={bicho.vidas}, Poder={bicho.poder}, Posicion={bicho.posicion.num}")
+# Ejemplo de uso de recorrer con print
+print("\nRecorriendo el laberinto e imprimiendo:")
+juego.laberinto.recorrer(print)
 
-# Crear laberinto de 2 habitaciones con bombas (Habitación 1 al este, Habitación 2 al oeste)
-fm = Creator()
-juego2 = Juego()
-juego2.laberinto = juego2.crearLaberinto2HabBomba(fm)
-hab1 = juego2.obtenerHabitacion(1)
-hab2 = juego2.obtenerHabitacion(2)
+#def abrirPuertas(obj):
+#    if obj.esPuerta():
+#        obj.abrir()
+juego.abrir_puertas()
 
-print("\nLaberinto de 2 habitaciones con bombas:")
-print(f"Habitación 1 tiene bomba al este: {hasattr(hab1, 'este') and hasattr(hab1.este, 'esBomba') and hab1.este.esBomba()}")
-print(f"Habitación 2 tiene bomba al oeste: {hasattr(hab2, 'oeste') and hasattr(hab2.oeste, 'esBomba') and hab2.oeste.esBomba()}")
+juego.cerrar_puertas()
+
+bicho=juego.bichos[0]
+juego.lanzarBicho(bicho)
+time.sleep(3)
+bicho.vidas=0
